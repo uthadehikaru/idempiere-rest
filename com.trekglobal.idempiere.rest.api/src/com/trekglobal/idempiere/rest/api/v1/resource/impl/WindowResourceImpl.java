@@ -49,6 +49,7 @@ import org.compiere.model.MPInstance;
 import org.compiere.model.MProcess;
 import org.compiere.model.MQuery;
 import org.compiere.model.MRole;
+import org.compiere.model.MSysConfig;
 import org.compiere.model.MTab;
 import org.compiere.model.MTable;
 import org.compiere.model.MWindow;
@@ -756,7 +757,7 @@ public class WindowResourceImpl implements WindowResource {
 			}
 		}
 		JsonArray jsonArray = new JsonArray();
-		Paging paging = new Paging(gridTab.getRowCount(), DEFAULT_PAGE_SIZE);
+		Paging paging = new Paging(gridTab.getRowCount(), MSysConfig.getIntValue("REST_DEFAULT_PAGE_SIZE", DEFAULT_PAGE_SIZE));
 		GridTabPaging gridTabPaging = new GridTabPaging(gridTab, paging);
 		if (pageNo > 0)
 			paging.setActivePage(pageNo);
