@@ -31,6 +31,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -531,25 +532,16 @@ public class ModelResourceImpl implements ModelResource {
 	
 	@Override
 	public Response deleteBulk(String tableName, String filter) {
-		
-		ModelHelper modelHelper = new ModelHelper(tableName, filter, null, -1, 0);
-		List<PO> list = modelHelper.getPOsFromRequest();
-		
-		int count = 0;
+		IQueryConverter converter = IQueryConverter.getQueryConverter("DEFAULT");
+		ConvertedQuery convertedStatement = converter.convertStatement(tableName, filter);
+		String whereClause = convertedStatement.getWhereClause();
+		String sql = "DELETE FROM "+tableName+" WHERE "+whereClause;
+		ArrayList<Object> params = new ArrayList<Object>(convertedStatement.getParameters());
+		int deleted = DB.executeUpdateEx(sql, params.toArray(), null);
+
 		JsonObject json = new JsonObject();
-		
-		JsonArray array = new JsonArray();
-		if (list != null) {
-			for (PO po : list) {
-				JsonObject data = new JsonObject();
-				data.addProperty("id", po.get_ID());
-				po.deleteEx(false);
-				count++;
-				array.add(data);
-			}
-		}
-		json.add("records", array);
-		json.addProperty("msg", Msg.getMsg(Env.getCtx(), "Deleted "+count));
+		json.addProperty("query", sql);
+		json.addProperty("msg", Msg.getMsg(Env.getCtx(), "Deleted "+deleted));
 		return Response.ok(json.toString()).build();
 	}
 

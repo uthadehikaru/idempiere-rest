@@ -98,15 +98,14 @@ public class ModelHelper {
 		query.setQueryTimeout(DEFAULT_QUERY_TIMEOUT);
 		rowCount = query.count();
 		pageCount = 1;
-		if (top < 0)
-			top = rowCount;
-		else if (MAX_RECORDS_SIZE > 0 && (top > MAX_RECORDS_SIZE || top == 0))
+		if (MAX_RECORDS_SIZE > 0 && (top > MAX_RECORDS_SIZE || top == 0))
 			top = MAX_RECORDS_SIZE;
 
 		if (top > 0 && rowCount > top) {
 			pageCount = (int)Math.ceil(rowCount / (double)top);
 		} 
-		query.setPageSize(top);
+		if(top>0)
+			query.setPageSize(top);
 		query.setRecordstoSkip(skip);
 
 		sqlStatement= query.getSQL();

@@ -132,9 +132,10 @@ public interface ModelResource {
 	/**
 	 * delete record by filter
 	 * @param tableName
+	 * @param filter optional where clause
 	 * @return http response
 	 */
-	public Response deleteBulk(@PathParam("tableName") String tableName, @QueryParam("filter") String filter);
+	public Response deleteBulk(@PathParam("tableName") String tableName, @QueryParam(QueryOperators.FILTER) String filter);
 	
 	@Path("{tableName}/{id}")
 	@DELETE
