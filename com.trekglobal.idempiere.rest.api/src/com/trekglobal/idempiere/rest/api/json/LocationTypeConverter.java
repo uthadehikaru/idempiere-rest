@@ -96,7 +96,7 @@ public class LocationTypeConverter implements ITypeConverter<Object> {
 				ref.addProperty("identifier", display);
 			}							
 			if (!Util.isEmpty(refTableName))
-				ref.addProperty("model-name", refTableName.toLowerCase());
+				ref.addProperty("model-name", refTableName);
 			
 			MColumn[] columns = MTable.get(MLocation.Table_ID).getColumns(false);
 			String columnName = null;
@@ -157,56 +157,56 @@ public class LocationTypeConverter implements ITypeConverter<Object> {
 					C_Location_ID = 0;
 			}
 
-			JsonElement address1Field = ref.get(MLocation.COLUMNNAME_Address1.toLowerCase());
+			JsonElement address1Field = ref.get(MLocation.COLUMNNAME_Address1);
 			String address1 = null;
 			if (address1Field != null) {
 				JsonPrimitive primitive = (JsonPrimitive) address1Field;
 				address1 = primitive.getAsString();
 			}
 			
-			JsonElement address2Field = ref.get(MLocation.COLUMNNAME_Address2.toLowerCase());
+			JsonElement address2Field = ref.get(MLocation.COLUMNNAME_Address2);
 			String address2 = null;
 			if (address2Field != null) {
 				JsonPrimitive primitive = (JsonPrimitive) address2Field;
 				address2 = primitive.getAsString();
 			}
 			
-			JsonElement address3Field = ref.get(MLocation.COLUMNNAME_Address3.toLowerCase());
+			JsonElement address3Field = ref.get(MLocation.COLUMNNAME_Address3);
 			String address3 = null;
 			if (address3Field != null) {
 				JsonPrimitive primitive = (JsonPrimitive) address3Field;
 				address3 = primitive.getAsString();
 			}
 			
-			JsonElement address4Field = ref.get(MLocation.COLUMNNAME_Address3.toLowerCase());
+			JsonElement address4Field = ref.get(MLocation.COLUMNNAME_Address3);
 			String address4 = null;
 			if (address3Field != null) {
 				JsonPrimitive primitive = (JsonPrimitive) address4Field;
 				address4 = primitive.getAsString();
 			}
 			
-			JsonElement address5Field = ref.get(MLocation.COLUMNNAME_Address5.toLowerCase());
+			JsonElement address5Field = ref.get(MLocation.COLUMNNAME_Address5);
 			String address5 = null;
 			if (address5Field != null) {
 				JsonPrimitive primitive = (JsonPrimitive) address5Field;
 				address5 = primitive.getAsString();
 			}
 			
-			JsonElement postalField = ref.get(MLocation.COLUMNNAME_Postal.toLowerCase());
+			JsonElement postalField = ref.get(MLocation.COLUMNNAME_Postal);
 			String postal = null;
 			if (postalField != null) {
 				JsonPrimitive primitive = (JsonPrimitive) postalField;
 				postal = primitive.getAsString();
 			}
 			
-			JsonElement postalAddField = ref.get(MLocation.COLUMNNAME_Postal_Add.toLowerCase());
+			JsonElement postalAddField = ref.get(MLocation.COLUMNNAME_Postal_Add);
 			String postalAdd = null;
 			if (postalAddField != null) {
 				JsonPrimitive primitive = (JsonPrimitive) postalAddField;
 				postalAdd = primitive.getAsString();
 			}
 			
-			JsonElement countryField = ref.get(MLocation.COLUMNNAME_C_Country_ID.toLowerCase());
+			JsonElement countryField = ref.get(MLocation.COLUMNNAME_C_Country_ID);
 			int C_Country_ID = 0;
 			if (countryField != null) {
 				JsonPrimitive primitive = (JsonPrimitive) countryField;
@@ -214,7 +214,7 @@ public class LocationTypeConverter implements ITypeConverter<Object> {
 					C_Country_ID = primitive.getAsInt();
 			}
 			
-			JsonElement regionField = ref.get(MLocation.COLUMNNAME_C_Region_ID.toLowerCase());
+			JsonElement regionField = ref.get(MLocation.COLUMNNAME_C_Region_ID);
 			int C_Region_ID = 0;
 			if (regionField != null) {
 				JsonPrimitive primitive = (JsonPrimitive) regionField;
@@ -222,14 +222,14 @@ public class LocationTypeConverter implements ITypeConverter<Object> {
 					C_Region_ID = primitive.getAsInt();
 			}
 			
-			JsonElement regionNameField = ref.get(MLocation.COLUMNNAME_RegionName.toLowerCase());
+			JsonElement regionNameField = ref.get(MLocation.COLUMNNAME_RegionName);
 			String regionName = null;
 			if (regionNameField != null) {
 				JsonPrimitive primitive = (JsonPrimitive) regionNameField;
 				regionName = primitive.getAsString();
 			}
 			
-			JsonElement cityIDField = ref.get(MLocation.COLUMNNAME_C_City_ID.toLowerCase());
+			JsonElement cityIDField = ref.get(MLocation.COLUMNNAME_C_City_ID);
 			int C_City_ID = 0;
 			if (cityIDField != null) {
 				JsonPrimitive primitive = (JsonPrimitive) cityIDField;
@@ -237,21 +237,21 @@ public class LocationTypeConverter implements ITypeConverter<Object> {
 					C_City_ID = primitive.getAsInt();
 			}
 			
-			JsonElement cityField = ref.get(MLocation.COLUMNNAME_City.toLowerCase());
+			JsonElement cityField = ref.get(MLocation.COLUMNNAME_City);
 			String city = null;
 			if (cityField != null) {
 				JsonPrimitive primitive = (JsonPrimitive) cityField;
 				city = primitive.getAsString();
 			}
 			
-			JsonElement commentsField = ref.get(MLocation.COLUMNNAME_Comments.toLowerCase());
+			JsonElement commentsField = ref.get(MLocation.COLUMNNAME_Comments);
 			String comments = null;
 			if (commentsField != null) {
 				JsonPrimitive primitive = (JsonPrimitive) commentsField;
 				comments = primitive.getAsString();
 			}
 			
-			JsonElement isActiveField = ref.get(MLocation.COLUMNNAME_IsActive.toLowerCase());
+			JsonElement isActiveField = ref.get(MLocation.COLUMNNAME_IsActive);
 			boolean isActive = false;
 			if (isActiveField != null) {
 				JsonPrimitive primitive = (JsonPrimitive) isActiveField;
