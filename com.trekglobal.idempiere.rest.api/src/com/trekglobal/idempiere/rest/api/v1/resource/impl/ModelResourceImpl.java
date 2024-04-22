@@ -515,6 +515,30 @@ public class ModelResourceImpl implements ModelResource {
 			return poParser.getResponseError();
 		}
 	}
+	
+	@Override
+	public Response deleteBulk(String tableName, String filter) {
+		
+		ModelHelper modelHelper = new ModelHelper(tableName, filter, null, -1, 0);
+		List<PO> list = modelHelper.getPOsFromRequest();
+		
+		int count = 0;
+		JsonObject json = new JsonObject();
+		
+		JsonArray array = new JsonArray();
+		if (list != null) {
+			for (PO po : list) {
+				JsonObject data = new JsonObject();
+				data.addProperty("id", po.get_ID());
+				po.deleteEx(false);
+				count++;
+				array.add(data);
+			}
+		}
+		json.add("records", array);
+		json.addProperty("msg", Msg.getMsg(Env.getCtx(), "Deleted "+count));
+		return Response.ok(json.toString()).build();
+	}
 
 	@Override
 	public Response getAttachments(String tableName, String id) {

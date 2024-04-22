@@ -126,6 +126,16 @@ public interface ModelResource {
 	 */
 	public Response update(@PathParam("tableName") String tableName, @PathParam("id") String id, String jsonText);
 	
+	@Path("{tableName}")
+	@DELETE
+	@Produces(MediaType.APPLICATION_JSON)
+	/**
+	 * delete record by filter
+	 * @param tableName
+	 * @return http response
+	 */
+	public Response deleteBulk(@PathParam("tableName") String tableName, @QueryParam("filter") String filter);
+	
 	@Path("{tableName}/{id}")
 	@DELETE
 	@Produces(MediaType.APPLICATION_JSON)
